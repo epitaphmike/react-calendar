@@ -8,7 +8,7 @@ import Day from '../src/Day';
 describe('<Day />', () => {
   let wrapper;
   before(() => {
-    wrapper = shallow(<Day date={ moment() } />);
+    wrapper = shallow(<Day date={ moment() } numberOfEventsByDate={{}} />);
   });
 
   it('should render a single <Day />', () => {

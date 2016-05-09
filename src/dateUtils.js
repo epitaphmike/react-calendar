@@ -6,7 +6,7 @@ import moment from 'moment';
  *  Can return moments from previous month if week start is in them.
  *  @param {string|Date|moment} month any date in a month to create weeks for
  */
-export function weeksOfMonth (month) {
+export function weeksOfMonth(month) {
   const thisMonth = month.month();
   const weeks = [];
 
@@ -25,7 +25,7 @@ export function weeksOfMonth (month) {
  *  Week contents is locale aware.
  *  @param {string|Date|moment} moment any date in the target month
  */
-export function monthEdges (month) {
+export function monthEdges(month) {
   const start = moment(month).startOf('month').startOf('week');
   const end = moment(month).endOf('month').endOf('week');
 
@@ -48,7 +48,7 @@ export function monthEdges (month) {
  *  Ordering is locale aware.
  *  @param {string|Date|moment} week any date in a week to create days for
  */
-export function daysOfWeek (week) {
+export function daysOfWeek(week) {
   week = moment(week).startOf('week');
 
   return Array(7).fill(0).map((n, i) => week.clone().add(n + i, 'day'));

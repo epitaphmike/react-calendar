@@ -66,7 +66,7 @@ const Week = (props) => {
               outside = Boolean(props.edges.find((edge, j) => edge.isSame(date, 'month', 'week', 'year')));
             }
 
-            return <Day outside={ !!outside } key={ `day-${i}` } date={ date } mods={ day } />
+            return <Day outside={ !!outside } key={ `day-${i}` } date={ date } mods={ day }  numberOfEventsByDate={ props.numberOfEventsByDate } />
           })
         }
       </div>
@@ -79,13 +79,14 @@ Week.propTypes = {
   weekNumbers: PropTypes.bool,
   weekNumberFormat: PropTypes.string,
   weekdayFormat: PropTypes.string,
+  numberOfEventsByDate: PropTypes.object
 };
 
 Week.defaultProps = {
   weekHeader: false,
   weekNumbers: false,
   weekNumberFormat: 'w',
-  weekdayFormat: 'dd',
+  weekdayFormat: 'dd'
 };
 
 export default Week;

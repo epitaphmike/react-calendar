@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import moment from 'moment';
 import classnames from 'classnames';
 import { getModsByCompType } from './util';
@@ -12,7 +13,8 @@ export default class Calendar extends Component {
     weekNumbers: PropTypes.bool,
     locale: PropTypes.string,
     month: PropTypes.array,
-    yearHeaderFormat: PropTypes.string
+    yearHeaderFormat: PropTypes.string,
+    numberOfEventsByDate: PropTypes.object
   };
 
   static defaultProps = {
@@ -23,7 +25,7 @@ export default class Calendar extends Component {
   constructor (props, context) {
     super(props, context);
   }
-
+  
   moment () {
     const localMoment = moment.apply(null, arguments);
 
@@ -56,16 +58,20 @@ export default class Calendar extends Component {
     let dayMods = getModsByCompType('day', mods);
 
     return (
-      <div>
+      <div className={'calendar-list'}>
+        {/*
+        // TODO: make this a prop boolean
         { this.renderHeader() }
+        */}
         {
           this.getMonthRange().map((date, i) =>
-           <Month key={ `month-${i}` }
-                  date={ date }
-                  weekNumbers={ this.props.weekNumbers }
-                  mods={ monthMods }
-                  week={ weekMods }
-                  day={ dayMods } />
+              <Month key={ `month-${i}` }
+                     date={ date }
+                     weekNumbers={ this.props.weekNumbers }
+                     mods={ monthMods }
+                     week={ weekMods }
+                     day={ dayMods }
+                     numberOfEventsByDate={ this.props.numberOfEventsByDate }/>
           )
         }
       </div>

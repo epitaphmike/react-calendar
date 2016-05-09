@@ -7,7 +7,7 @@ const bindEvents = (events, date) => {
     .forEach((key) => boundEvents[key] = events[key].bind(null, date));
 
   return boundEvents;
-}
+};
 
 const getClsMods = (clsPrefix, mods) =>
   !mods || !mods.classNames ? null : mods.classNames.map((cls) => `${clsPrefix}--${cls}`);
@@ -32,10 +32,9 @@ const getModByDate = (mods, date, type) => {
     });
 
   return modifier;
-}
+};
 
-const getModsWithDateRange = (mods) =>
-  mods.filter((mod) => !!mod.startDate)
+const getModsWithDateRange = (mods) => mods.filter((mod) => !!mod.startDate);
 
 const explodeDateRanges = (mods) => {
   return mods.map((mod) => {
@@ -54,7 +53,7 @@ const explodeDateRanges = (mods) => {
     });
   })
   .reduce((a, b) => a.concat(b), []);
-}
+};
 
 const getModsWithSingleDate = (mods) =>
   mods.filter((mod) => !mod.startDate && mod.date)

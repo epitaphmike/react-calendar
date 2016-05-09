@@ -78,7 +78,8 @@ const Month = (props) => {
                 edges={ edges }
                 weekNumbers={ weekNumbers }
                 mods={ fWeekMods }
-                day={ fDayMods } />
+                day={ fDayMods }
+                numberOfEventsByDate={ props.numberOfEventsByDate }/>
         )
       }
     </div>
@@ -90,7 +91,8 @@ Month.propTypes = {
   monthNameFormat: PropTypes.string,
   weekdayNames: PropTypes.bool,
   weekdayFormat: PropTypes.string,
-  mod: PropTypes.object
+  mod: PropTypes.object,
+  numberOfEventsByDate: PropTypes.object
 };
 
 Month.defaultProps = {

@@ -45,9 +45,8 @@ const Day = (props) => {
 
   return (
     <div className={ clsDay } { ...events }>
-      { renderHeader(props) }
-      { date.format(props.dayFormat) }
-      { renderAgenda(props) }
+      <div className={'rc-Day--date'}>{ date.format(props.dayFormat) }</div>
+      <div className={'rc-Day--event-quantity'}>{ props.numberOfEventsByDate[date.format(props.fullYearMonthDayFormat)] || '' }</div>
     </div>
   );
 };
@@ -58,14 +57,19 @@ Day.propTypes = {
   dayHeader: React.PropTypes.bool,
   dayHeaderFormat: React.PropTypes.string,
   dayFormat: React.PropTypes.string,
-  mods: PropTypes.array
+  fullYearMonthDayFormat: React.PropTypes.string,
+  mods: PropTypes.array,
+  numberOfEventsByDate: PropTypes.object
 };
 
 Day.defaultProps = {
   dayAgenda: false,
   dayHeader: false,
   dayHeaderFormat: 'MMM Do',
-  dayFormat: 'D'
+  dayFormat: 'D',
+  fullYearMonthDayFormat: 'YYYY-MM-DD'
 };
 
 export default Day;
+
+

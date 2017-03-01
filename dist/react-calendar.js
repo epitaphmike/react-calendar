@@ -218,7 +218,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            mods: monthMods,
 	            week: weekMods,
 	            day: dayMods,
-	            numberOfEventsByDate: _this2.props.numberOfEventsByDate });
+	            numberOfEventsByDate: _this2.props.numberOfEventsByDate,
+	            annotations: _this2.props.annotations });
 	        })
 	      );
 	    }
@@ -234,7 +235,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  locale: _react.PropTypes.string,
 	  month: _react.PropTypes.array,
 	  yearHeaderFormat: _react.PropTypes.string,
-	  numberOfEventsByDate: _react.PropTypes.object
+	  numberOfEventsByDate: _react.PropTypes.object,
+	  annotations: _react.PropTypes.array
 	};
 	Calendar.defaultProps = {
 	  locale: 'en',
@@ -19982,7 +19984,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        weekNumbers: weekNumbers,
 	        mods: fWeekMods,
 	        day: fDayMods,
-	        numberOfEventsByDate: props.numberOfEventsByDate });
+	        numberOfEventsByDate: props.numberOfEventsByDate,
+	        annotations: props.annotations });
 	    })
 	  );
 	};
@@ -19993,7 +19996,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  weekdayNames: _react.PropTypes.bool,
 	  weekdayFormat: _react.PropTypes.string,
 	  mod: _react.PropTypes.object,
-	  numberOfEventsByDate: _react.PropTypes.object
+	  numberOfEventsByDate: _react.PropTypes.object,
+	  annotations: _react.PropTypes.array
 	};
 
 	Month.defaultProps = {
@@ -20175,7 +20179,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }));
 	        }
 
-	        return _react2.default.createElement(_Day2.default, { outside: !!outside, key: 'day-' + i, date: date, mods: day, numberOfEventsByDate: props.numberOfEventsByDate });
+	        return;
+	        _react2.default.createElement(_Day2.default, {
+	          outside: !!outside,
+	          key: 'day-' + i,
+	          date: date,
+	          mods: day,
+	          numberOfEventsByDate: props.numberOfEventsByDate,
+	          annotations: props.annotations });
 	      })
 	    )
 	  );
@@ -20186,7 +20197,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  weekNumbers: _react.PropTypes.bool,
 	  weekNumberFormat: _react.PropTypes.string,
 	  weekdayFormat: _react.PropTypes.string,
-	  numberOfEventsByDate: _react.PropTypes.object
+	  numberOfEventsByDate: _react.PropTypes.object,
+	  annotations: _react.PropTypes.array
 	};
 
 	Week.defaultProps = {

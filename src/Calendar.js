@@ -14,7 +14,8 @@ export default class Calendar extends Component {
     locale: PropTypes.string,
     month: PropTypes.array,
     yearHeaderFormat: PropTypes.string,
-    numberOfEventsByDate: PropTypes.object
+    numberOfEventsByDate: PropTypes.object,
+    annotations: PropTypes.array
   };
 
   static defaultProps = {
@@ -25,7 +26,7 @@ export default class Calendar extends Component {
   constructor (props, context) {
     super(props, context);
   }
-  
+
   moment () {
     const localMoment = moment.apply(null, arguments);
 
@@ -71,7 +72,8 @@ export default class Calendar extends Component {
                      mods={ monthMods }
                      week={ weekMods }
                      day={ dayMods }
-                     numberOfEventsByDate={ this.props.numberOfEventsByDate }/>
+                     numberOfEventsByDate={ this.props.numberOfEventsByDate }
+                     annotations={ this.props.annotations }/>
           )
         }
       </div>

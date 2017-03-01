@@ -19896,6 +19896,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var clsPrefix = 'rc-Month';
 
 	var renderWeekHeader = function renderWeekHeader(props) {
+
+	  if (!props.weekdayNames) {
+	    return null;
+	  }
+
 	  return _react2.default.createElement(
 	    'div',
 	    { className: clsPrefix + '-weekdays' },
@@ -20260,6 +20265,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 
 	  var clsDay = (0, _classnames2.default)(clsPrefix, { 'rc-Day--outside': outside }, clsMods);
+	  var eventsByDay = props.numberOfEventsByDate[date.format(props.fullYearMonthDayFormat)];
 
 	  return _react2.default.createElement(
 	    'div',
@@ -20272,7 +20278,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'rc-Day--event-quantity' },
-	      props.numberOfEventsByDate[date.format(props.fullYearMonthDayFormat)] || ''
+	      eventsByDay || ''
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'rc-Day--annotation' },
+	      eventsByDay > 0 && !outside ? eventsByDay === 1 ? props.annotations[0] : props.annotations[1] || '' : ''
 	    )
 	  );
 	};
@@ -20285,7 +20296,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  dayFormat: _react2.default.PropTypes.string,
 	  fullYearMonthDayFormat: _react2.default.PropTypes.string,
 	  mods: _react.PropTypes.array,
-	  numberOfEventsByDate: _react.PropTypes.object
+	  numberOfEventsByDate: _react.PropTypes.object,
+	  annotations: _react.PropTypes.array
 	};
 
 	Day.defaultProps = {

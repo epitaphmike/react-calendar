@@ -42,11 +42,19 @@ const Day = (props) => {
   }
 
   const clsDay = classnames(clsPrefix, { 'rc-Day--outside': outside }, clsMods);
+  const eventsByDay = props.numberOfEventsByDate[date.format(props.fullYearMonthDayFormat)];
 
   return (
     <div className={ clsDay } { ...events }>
       <div className={'rc-Day--date'}>{ date.format(props.dayFormat) }</div>
-      <div className={'rc-Day--event-quantity'}>{ props.numberOfEventsByDate[date.format(props.fullYearMonthDayFormat)] || '' }</div>
+      <div className={'rc-Day--event-quantity'}>{ eventsByDay || '' }</div>
+      <div className={'rc-Day--annotation'}>
+        {
+          eventsByDay > 0 && !outside
+            ? (eventsByDay === 1 ? props.annotations[0] : (props.annotations[1] || ''))
+            : ''
+        }
+      </div>
     </div>
   );
 };
@@ -59,7 +67,8 @@ Day.propTypes = {
   dayFormat: React.PropTypes.string,
   fullYearMonthDayFormat: React.PropTypes.string,
   mods: PropTypes.array,
-  numberOfEventsByDate: PropTypes.object
+  numberOfEventsByDate: PropTypes.object,
+  annotations: PropTypes.array
 };
 
 Day.defaultProps = {
@@ -71,5 +80,3 @@ Day.defaultProps = {
 };
 
 export default Day;
-
-

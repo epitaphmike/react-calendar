@@ -20179,8 +20179,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }));
 	        }
 
-	        return;
-	        _react2.default.createElement(_Day2.default, {
+	        return _react2.default.createElement(_Day2.default, {
 	          outside: !!outside,
 	          key: 'day-' + i,
 	          date: date,

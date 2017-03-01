@@ -66,14 +66,15 @@ const Week = (props) => {
               outside = Boolean(props.edges.find((edge, j) => edge.isSame(date, 'month', 'week', 'year')));
             }
 
-            return
-            <Day
-              outside={ !!outside }
-              key={ `day-${i}` }
-              date={ date }
-              mods={ day }
-              numberOfEventsByDate={ props.numberOfEventsByDate }
-              annotations={ props.annotations }/>
+            return (
+              <Day
+                outside={ !!outside }
+                key={ `day-${i}` }
+                date={ date }
+                mods={ day }
+                numberOfEventsByDate={ props.numberOfEventsByDate }
+                annotations={ props.annotations }/>
+            )
           })
         }
       </div>

@@ -15,7 +15,7 @@ export function weeksOfMonth(month) {
   do {
     weeks.push(month.clone());
     month.add(1, 'week');
-  } while (month.month() === thisMonth)
+  } while (month.month() === thisMonth);
 
   return weeks;
 }
@@ -23,7 +23,7 @@ export function weeksOfMonth(month) {
 /** Returns moments for each day that is not in the month, but is part of
  *  weeks that are.
  *  Week contents is locale aware.
- *  @param {string|Date|moment} moment any date in the target month
+ *  @param {string|Date|moment} month any date in the target month
  */
 export function monthEdges(month) {
   const start = moment(month).startOf('month').startOf('week');

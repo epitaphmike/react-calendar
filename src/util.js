@@ -56,7 +56,7 @@ const explodeDateRanges = (mods) => {
 };
 
 const getModsWithSingleDate = (mods) =>
-  mods.filter((mod) => !mod.startDate && mod.date)
+  mods.filter((mod) => !mod.startDate && mod.date);
 
 const getModsWithoutDate = (mods) =>
   mods.filter((mod) => !mod.date)

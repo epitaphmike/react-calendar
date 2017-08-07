@@ -23024,7 +23024,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -23048,87 +23048,87 @@ return /******/ (function(modules) { // webpackBootstrap
 	var clsPrefix = 'rc-Day';
 
 	var renderHeader = function renderHeader(props) {
-	  if (!props.dayHeader) {
-	    return null;
-	  }
+	    if (!props.dayHeader) {
+	        return null;
+	    }
 
-	  return _react2.default.createElement(
-	    'header',
-	    { className: clsPrefix + '-Day-header' },
-	    props.date.format(props.dayHeaderFormat)
-	  );
+	    return _react2.default.createElement(
+	        'header',
+	        { className: clsPrefix + '-Day-header' },
+	        props.date.format(props.dayHeaderFormat)
+	    );
 	};
 
 	var renderAgenda = function renderAgenda(props) {
-	  if (!props.dayAgenda) {
-	    return null;
-	  }
+	    if (!props.dayAgenda) {
+	        return null;
+	    }
 
-	  return _react2.default.createElement(
-	    'div',
-	    { key: 'agenda', className: clsPrefix + '-Day-agenda' },
-	    props.children
-	  );
+	    return _react2.default.createElement(
+	        'div',
+	        { key: 'agenda', className: clsPrefix + '-Day-agenda' },
+	        props.children
+	    );
 	};
 
 	var Day = function Day(props) {
-	  var clsPrefix = 'rc-Day';
-	  var date = props.date,
-	      mods = props.mods,
-	      outside = props.outside;
+	    var clsPrefix = 'rc-Day';
+	    var date = props.date,
+	        mods = props.mods,
+	        outside = props.outside;
 
-	  var modifiers = (0, _util.getMods)(mods, date, clsPrefix, 'day');
+	    var modifiers = (0, _util.getMods)(mods, date, clsPrefix, 'day');
 
-	  var clsMods = void 0,
-	      events = void 0;
+	    var clsMods = void 0,
+	        events = void 0;
 
-	  if (modifiers) {
-	    clsMods = modifiers.clsMods;
-	    events = modifiers.events;
-	  }
+	    if (modifiers) {
+	        clsMods = modifiers.clsMods;
+	        events = modifiers.events;
+	    }
 
-	  var clsDay = (0, _classnames2.default)(clsPrefix, { 'rc-Day--outside': outside }, clsMods);
-	  var eventsByDay = props.numberOfEventsByDate[date.format(props.fullYearMonthDayFormat)];
+	    var clsDay = (0, _classnames2.default)(clsPrefix, { 'rc-Day--outside': outside }, clsMods);
+	    var eventsByDay = props.numberOfEventsByDate[date.format(props.fullYearMonthDayFormat)];
 
-	  return _react2.default.createElement(
-	    'div',
-	    _extends({ className: clsDay }, events),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'rc-Day--date' },
-	      date.format(props.dayFormat)
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'rc-Day--event-quantity' },
-	      eventsByDay || ''
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'rc-Day--annotation' },
-	      eventsByDay > 0 && !outside ? eventsByDay === 1 ? props.annotations[0] : props.annotations[1] || '' : ''
-	    )
-	  );
+	    return _react2.default.createElement(
+	        'div',
+	        _extends({ className: clsDay }, events),
+	        _react2.default.createElement(
+	            'div',
+	            { className: 'rc-Day--date' },
+	            date.format(props.dayFormat)
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: 'rc-Day--event-quantity' },
+	            eventsByDay || ''
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: 'rc-Day--annotation' },
+	            eventsByDay > 0 && !outside ? eventsByDay === 1 ? props.annotations[0] : props.annotations[1] || '' : ''
+	        )
+	    );
 	};
 
 	Day.propTypes = {
-	  date: _react2.default.PropTypes.object.isRequired,
-	  dayAgenda: _react2.default.PropTypes.bool,
-	  dayHeader: _react2.default.PropTypes.bool,
-	  dayHeaderFormat: _react2.default.PropTypes.string,
-	  dayFormat: _react2.default.PropTypes.string,
-	  fullYearMonthDayFormat: _react2.default.PropTypes.string,
-	  mods: _propTypes2.default.array,
-	  numberOfEventsByDate: _propTypes2.default.object,
-	  annotations: _propTypes2.default.array
+	    date: _propTypes2.default.object.isRequired,
+	    dayAgenda: _propTypes2.default.bool,
+	    dayHeader: _propTypes2.default.bool,
+	    dayHeaderFormat: _propTypes2.default.string,
+	    dayFormat: _propTypes2.default.string,
+	    fullYearMonthDayFormat: _propTypes2.default.string,
+	    mods: _propTypes2.default.array,
+	    numberOfEventsByDate: _propTypes2.default.object,
+	    annotations: _propTypes2.default.array
 	};
 
 	Day.defaultProps = {
-	  dayAgenda: false,
-	  dayHeader: false,
-	  dayHeaderFormat: 'MMM Do',
-	  dayFormat: 'D',
-	  fullYearMonthDayFormat: 'YYYY-MM-DD'
+	    dayAgenda: false,
+	    dayHeader: false,
+	    dayHeaderFormat: 'MMM Do',
+	    dayFormat: 'D',
+	    fullYearMonthDayFormat: 'YYYY-MM-DD'
 	};
 
 	exports.default = Day;

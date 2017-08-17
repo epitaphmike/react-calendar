@@ -20,8 +20,7 @@
   },
   "peerDependencies": {
     "moment": "^2.8.3",
-    "react": "15.x",
-    "react-dom": "15.x"
+    "react": "15.x"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",

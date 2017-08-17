@@ -38,49 +38,78 @@ const renderWeekHeader = (props) => {
   );
 };
 
-const Week = (props) => {
-  const { mods, date } = props;
-  let clsMods, events, week, { day } = props;
+class Week extends React.Component {
+    getModsFromProps = props => {
+        const { mods, date } = props;
+        let clsMods, events, week = props;
 
-  week = getModsByCompType('week', mods);
-  const modifiers = getMods(week, date, clsPrefix, 'week');
+        week = getModsByCompType('week', mods);
+        const modifiers = getMods(week, date, clsPrefix, 'week');
 
-  if (modifiers) {
-    clsMods = modifiers.clsMods;
-    events = modifiers.events;
-  }
-
-  if (!props.day) {
-    day = getModsByCompType('day', mods);
-  }
-
-  return (
-    <div key="days" className={ classnames(clsPrefix, clsMods) } { ...events }>
-      { renderWeekHeader(props) }
-      { makeWeekNumber(props) }
-      <div className={ classnames(`${clsPrefix}-days`) }>
-        {
-          daysOfWeek(props.date).map((date, i) => {
-            let outside;
-
-            if (props.edges) {
-              outside = Boolean(props.edges.find((edge, j) => edge.isSame(date, 'month', 'week', 'year')));
-            }
-
-            return (
-              <Day
-                outside={ !!outside }
-                key={ `day-${i}` }
-                date={ date }
-                mods={ day }
-                numberOfEventsByDate={ props.numberOfEventsByDate }
-                annotations={ props.annotations }/>
-            )
-          })
+        if (modifiers) {
+          clsMods = modifiers.clsMods;
+          events = modifiers.events;
         }
-      </div>
-    </div>
-  );
+
+        return {
+            clsMods,
+            events
+        };
+    };
+
+    shouldComponentUpdate(nextProps) {
+        const thisWeekModifiers = this.getModsFromProps(this.props);
+        const nextWeekModifiers = this.getModsFromProps(nextProps);
+
+        return this.props.numberOfEventsByDate !== nextProps.numberOfEventsByDate ||
+            nextWeekModifiers.clsMods.length !== 0 ||
+            nextWeekModifiers.clsMods.length !== thisWeekModifiers.clsMods.length;
+    }
+
+    render() {
+        const { mods, date } = this.props;
+        let clsMods, events, week, { day } = this.props;
+
+        week = getModsByCompType('week', mods);
+        const modifiers = getMods(week, date, clsPrefix, 'week');
+
+        if (modifiers) {
+          clsMods = modifiers.clsMods;
+          events = modifiers.events;
+        }
+
+        if (!day) {
+          day = getModsByCompType('day', mods);
+        }
+
+        return (
+          <div key="days" className={ classnames(clsPrefix, clsMods) } { ...events }>
+            { renderWeekHeader(this.props) }
+            { makeWeekNumber(this.props) }
+            <div className={ classnames(`${clsPrefix}-days`) }>
+              {
+                daysOfWeek(date).map((date, i) => {
+                  let outside;
+
+                  if (this.props.edges) {
+                    outside = Boolean(this.props.edges.find((edge, j) => edge.isSame(date, 'month', 'week', 'year')));
+                  }
+
+                  return (
+                    <Day
+                      outside={ !!outside }
+                      key={ `day-${i}` }
+                      date={ date }
+                      mods={ day }
+                      numberOfEventsByDate={ this.props.numberOfEventsByDate }
+                      annotations={ this.props.annotations }/>
+                  )
+                })
+              }
+            </div>
+          </div>
+        );
+    }
 };
 
 Week.propTypes = {

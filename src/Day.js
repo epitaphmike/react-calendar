@@ -30,32 +30,58 @@ const renderAgenda = props => {
     );
 };
 
-const Day = props => {
-    const clsPrefix = 'rc-Day';
-    const { date, mods, outside } = props;
-    const modifiers = getMods(mods, date, clsPrefix, 'day');
+class Day extends React.Component {
+    getModsFromProps = props => {
+        const { date, mods, outside } = props;
+        const modifiers = getMods(mods, date, clsPrefix, 'day');
 
-    let clsMods, events;
+        let clsMods, events;
 
-    if (modifiers) {
-        clsMods = modifiers.clsMods;
-        events = modifiers.events;
+        if (modifiers) {
+            clsMods = modifiers.clsMods;
+            events = modifiers.events;
+        }
+
+        return {
+            clsMods,
+            events
+        };
+    };
+
+    shouldComponentUpdate(nextProps) {
+        const { outside, date } = this.props;
+        const currentModifiers = this.getModsFromProps(this.props);
+        const nextModifiers = this.getModsFromProps(nextProps);
+
+        const currentClsDay = classnames(clsPrefix, { 'rc-Day--outside': outside }, currentModifiers.clsMods);
+        const currentEventsByDay = this.props.numberOfEventsByDate[date.format(this.props.fullYearMonthDayFormat)];
+
+        const nextClsDay = classnames(clsPrefix, { 'rc-Day--outside': outside }, nextModifiers.clsMods);
+        const nextEventsByDay = nextProps.numberOfEventsByDate[date.format(nextProps.fullYearMonthDayFormat)];
+
+        return currentClsDay !== nextClsDay || currentEventsByDay !== nextEventsByDay;
     }
 
-    const clsDay = classnames(clsPrefix, { 'rc-Day--outside': outside }, clsMods);
-    const eventsByDay = props.numberOfEventsByDate[date.format(props.fullYearMonthDayFormat)];
+    render() {
+        const clsPrefix = 'rc-Day';
+        const { date, outside } = this.props;
+        const modifiers = this.getModsFromProps(this.props);
 
-    return (
-        <div className={clsDay} {...events}>
-            <div className={'rc-Day--date'}>{date.format(props.dayFormat)}</div>
-            <div className={'rc-Day--event-quantity'}>{eventsByDay || ''}</div>
-            <div className={'rc-Day--annotation'}>
-                {eventsByDay > 0 && !outside
-                    ? eventsByDay === 1 ? props.annotations[0] : props.annotations[1] || ''
-                    : ''}
+        const clsDay = classnames(clsPrefix, { 'rc-Day--outside': outside }, modifiers.clsMods);
+        const eventsByDay = this.props.numberOfEventsByDate[date.format(this.props.fullYearMonthDayFormat)];
+
+        return (
+            <div className={clsDay} {...modifiers.events}>
+                <div className={'rc-Day--date'}>{date.format(this.props.dayFormat)}</div>
+                <div className={'rc-Day--event-quantity'}>{eventsByDay || ''}</div>
+                <div className={'rc-Day--annotation'}>
+                    {eventsByDay > 0 && !outside
+                        ? eventsByDay === 1 ? this.props.annotations[0] : this.props.annotations[1] || ''
+                        : ''}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 Day.propTypes = {

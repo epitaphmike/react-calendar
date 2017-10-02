@@ -59,7 +59,7 @@ class Day extends React.Component {
         const nextClsDay = classnames(clsPrefix, { 'rc-Day--outside': outside }, nextModifiers.clsMods);
         const nextEventsByDay = nextProps.numberOfEventsByDate[date.format(nextProps.fullYearMonthDayFormat)];
 
-        return currentClsDay !== nextClsDay || currentEventsByDay !== nextEventsByDay;
+        return currentClsDay !== nextClsDay || currentEventsByDay !== nextEventsByDay || !date.isSame(nextProps.date);
     }
 
     render() {
